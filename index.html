@@ -6,147 +6,58 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<script type="text/javascript" src="db.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<div id="flightsNumbers"></div>
+	<div id="content"></div>
 
 	<script type="text/babel">
-
-var ListOfFlights = [
-{
-	flightNumber: "AB1322", 
-	passengers: [ 
-			{
-				"name":     "Dmitry Kouznetsov",
-				"booking":  "ABCDEF"
-			},
-			{
-				"name":     "Natalia Shteinikova", 
-				"booking":  "ABCDEF"
-			}, 
-	] 
-}, 
-{ 
-	flightNumber: "CD224",
-	passengers: [ 
-			{
-				"name":     "Alex Emshanov",
-				"booking":  "ADADADAD"
-			},
-			{
-				"name":     "Alexandra Emshanova",
-				"booking":  "ADADADAD"
-			},
-		 {
-				"name":     "Avrora Emshanova",
-				"booking":  "ADADADAD"
-			},
-	] 
-}, 
-{ 
-	flightNumber: "QR335", 
-	passengers: [ 
-			{
-				"name":     "Ivan Lapshin",
-				"booking":  "QWERT"
-			},
-			{
-				"name":     "Macaw Macaw",
-				"booking":  "QWERT"
-			},
-			{
-				"name": "Macaw1 Macaw1",
-				"booking":  "QWERT"
-			},
-	] 
-},
-{ 
-	flightNumber: "BB554", 
-	passengers: [ 
-			{
-				"name":     "Parrot",
-				"booking":  "TYY"
-			},
-			{
-				"name":     "Monkey",
-				"booking":  "TYY"
-			},
-			{
-				"name": "Piton",
-				"booking":  "TYY"
-			},
-			{
-				"name": "Elephan",
-				"booking":  "TYY"
-			},
-	] 
-}  
-]
-
 
 
 var FlightNumbers = React.createClass({
 	render: function(){
-		return (
-		<div> 
-			<ul>
-				{
-					ListOfFlights.map(function(ListOfFlights){
-						return <div>{ListOfFlights.flightNumber}</div>
-					})
-				}	
-			</ul>
-		</div>
-		);
+		return <ul className="container">
+				<div className="Flight-Number">{this.props.idFlightNumber}</div>
+				<div className="Passengers-Name">{this.props.idPassengersName}</div>
+				<div className="Booking-Number">{this.props.idBookingNumber}</div>
+				</ul>
 	}
 }); 
 
 
-var PassengerName = React.createClass({
-	render: function(){
+var ListOfFlightsAndPassengers = React.createClass({
+	render: function(){	
 		return (
-			<div> 
-				<ul>
+			<div className="flight-numbers"> 
+				<ul className="flight-numbers-list">
 					{
-						ListOfFlights.map(function(ListOfFlights){
-							return ListOfFlights.passengers.map(function(passengers){
-								return <div> {passengers.name} </div>
-							})
-						})
+					 _.map(_.keys(listOfFlights), function(el){
+					 	return <FlightNumbers 
+				 				key={el}
+				 				idFlightNumber={el}
+				 				idPassengersName={
+				 					_.map(listOfFlights[el].passengers, function(passengers){
+				 						return passengers.name+" "
+				 					})}
+				 				idBookingNumber ={
+				 					_.map(listOfFlights[el].passengers, function(passengers){
+				 						return passengers.booking+" "
+				 					})}
+					 			/>
+					 }) 
 					}	
 				</ul>
 			</div>
 		);
 	}
-});  
-
-
-var BookingNumbers = React.createClass({
-	render: function(){
-		return (
-			<div> 
-				<ul>
-					{
-						ListOfFlights.map(function(ListOfFlights){
-							return ListOfFlights.passengers.map(function(passengers){
-								return <div> {passengers.booking} </div>
-							})
-						})
-					}	
-				</ul>
-			</div>
-		);
-	}
-});   
+})
 
 
 ReactDOM.render(
-	<div>
-	 	<FlightNumbers />
-	 	<PassengerName />
-	 	<BookingNumbers />
-	</div>,
-		document.getElementById('flightsNumbers')
+	 	<ListOfFlightsAndPassengers />,
+		document.getElementById('content')
 	);
 
 	</script>
