@@ -17,7 +17,7 @@
 
 var FlightNumbers = React.createClass({
 	render: function(){
-		return <ul className="container">
+		return <ul className="flight">
 					<div className="Flight-Number">{this.props.idFlightNumber}</div>
 				</ul>
 	}
@@ -27,7 +27,7 @@ var FlightNumbers = React.createClass({
 var ListOfFlights = React.createClass({
 	render: function(){	
 		return (
-			<div className="flight-numbers"> 
+			<div className="flight-numbers">Flight Numbers
 				<ul className="flight-numbers-list">
 					{
 					 _.map(_.keys(listOfFlights), function(el){
@@ -58,8 +58,8 @@ var PassengersName = React.createClass({
 var ListOfPassengers = React.createClass({
 	render: function(){	
 		return (
-			<div className="flight-numbers"> 
-				<ul className="flight-numbers-list">
+			<div className="list-of-passengers">Passengers Name
+				<ul>
 					{
 					 _.map(_.keys(listOfFlights), function(el){
 					 	var show = _.map(listOfFlights[el].passengers, function(passengers){				 						
@@ -89,8 +89,8 @@ var BookingNumbers = React.createClass({
 var ListOfFBooking = React.createClass({
 	render: function(){	
 		return (
-			<div className="flight-numbers"> 
-				<ul className="flight-numbers-list">
+			<div className="list-of-booking">Booking number
+				<ul>
 					{
 					 _.map(_.keys(listOfFlights), function(el){
 					 	var show = _.map(listOfFlights[el].passengers, function(passengers){				 						

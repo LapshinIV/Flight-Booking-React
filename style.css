@@ -1,40 +1,26 @@
-.flight-numbers{         
-  width:300px;
-  margin: 0;         
-  text-align: center;
-  font-family: Verdana;
+#content {
+ position:relative;
+ text-align: center;
+}
+ 
+.flight-numbers {
+ position:absolute;
+ top:0;
+ right:50%;
+ width:350px;
+}
+ 
+.list-of-passengers {
+ position:absolute;
+ top:0;
+ left:40%;
+ width:350px;
 }
 
-.Flight-Numbers:hover {
-    background-color: lightgray; 
+.list-of-booking {
+ position:absolute;
+ top:0;
+ left:65%;
+ width:350px;
 }
 
-#passengersName, #bookingNumber, #passengers, #booking{
-  float:left;
-  display:table-column;         
-  width:300px; 
-  height:50px;
-  margin: auto;         
-  text-align: center;
-  font-family: Verdana;
-}
-
-#container {
-  width: 850px;
-  padding: auto;
-  margin: auto
-}
-
-
-#choice{
-  float:left;
-  display:table-column;
-  width: 600px;
-  margin: 5px;
-  left: 380px;
-  top: 35px;
-  font-style: italic;
-  font-size: 10pt;
-  color: grey
-
-}
