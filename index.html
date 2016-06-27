@@ -19,14 +19,12 @@ var FlightNumbers = React.createClass({
 	render: function(){
 		return <ul className="container">
 					<div className="Flight-Number">{this.props.idFlightNumber}</div>
-					<div className="Passengers-Name">{this.props.idPassengersName}</div>
-					<div className="Booking-Number">{this.props.idBookingNumber}</div>
 				</ul>
 	}
 }); 
 
 
-var ListOfFlightsAndPassengers = React.createClass({
+var ListOfFlights = React.createClass({
 	render: function(){	
 		return (
 			<div className="flight-numbers"> 
@@ -36,14 +34,6 @@ var ListOfFlightsAndPassengers = React.createClass({
 					 	return <FlightNumbers 
 				 				key={el}
 				 				idFlightNumber={el}
-				 				idPassengersName={
-				 					_.map(listOfFlights[el].passengers, function(passengers){
-				 						return passengers.name+" "
-				 					})}
-				 				idBookingNumber ={
-				 					_.map(listOfFlights[el].passengers, function(passengers){
-				 						return passengers.booking+" "
-				 					})}
 					 			/>
 					 }) 
 					}	
@@ -54,8 +44,77 @@ var ListOfFlightsAndPassengers = React.createClass({
 })
 
 
+// =================================================================================================
+
+var PassengersName = React.createClass({
+	render: function(){
+		return <ul className="container">
+					<div className="Passengers-Name">{this.props.idPassengersName}</div>
+				</ul>
+	}
+}); 
+
+
+var ListOfPassengers = React.createClass({
+	render: function(){	
+		return (
+			<div className="flight-numbers"> 
+				<ul className="flight-numbers-list">
+					{
+					 _.map(_.keys(listOfFlights), function(el){
+					 	var show = _.map(listOfFlights[el].passengers, function(passengers){				 						
+					 	return <PassengersName 
+			 				key={passengers.name}
+			 				idPassengersName={passengers.name}
+				 			/>
+				 		})
+				 		return show;
+					 }) 
+					}	
+				</ul>
+			</div>
+		);
+	}
+})
+// =============================================================================================
+var BookingNumbers = React.createClass({
+	render: function(){
+		return <ul className="container">
+					<div className="Booking-Number">{this.props.idBookingNumber}</div>
+				</ul>
+	}
+}); 
+
+
+var ListOfFBooking = React.createClass({
+	render: function(){	
+		return (
+			<div className="flight-numbers"> 
+				<ul className="flight-numbers-list">
+					{
+					 _.map(_.keys(listOfFlights), function(el){
+					 	var show = _.map(listOfFlights[el].passengers, function(passengers){				 						
+					 	return <PassengersName 
+			 				key={passengers.name}
+			 				idPassengersName={passengers.booking}
+				 			/>
+				 		})
+				 		return show;
+					 }) 
+					}	
+				</ul>
+			</div>
+		);
+	}
+})
+
+
 ReactDOM.render(
-	 	<ListOfFlightsAndPassengers />,
+	<div>
+	 	<ListOfFlights />
+	 	<ListOfPassengers />
+	 	<ListOfFBooking />
+	</div>,
 		document.getElementById('content')
 	);
 

@@ -69,9 +69,11 @@ var listOfFlights = {
 	}  
 }
 
-console.log(listOfFlights["AB1322"].passengers.name)
+// console.log(listOfFlights["AB1322"].passengers.name)
 
+var a = [1,2,3];
 
+console.log(a.innerHTML)
 
 // ListOfFlights.map(function(el){
 // 	el.passengers.map(function(el1){
